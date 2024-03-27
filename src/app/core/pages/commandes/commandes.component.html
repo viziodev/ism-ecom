@@ -1,0 +1,50 @@
+<div class="container-fluid mt-2" >
+    <div class="card mt-1">
+        <div class="card-header">
+            <h3>Liste des Clients</h3>
+        </div>
+        <div class="card-body">
+              <div  class="my-2 float-end">
+                       <a th:href="" class="btn btn-outline-success" >Nouveau</a>
+              </div>
+
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Montant</th>
+                        <th>Etat</th>
+                        <th>Adresse</th>
+
+                </tr>
+                </thead>
+                <tbody>
+              @for (item of response?.results; track $index) {
+                  <tr >
+                    <td >{{item.dateComd| date: 'dd/MM/yyyy'}}</td>
+                    <td >{{item.montant}}</td>
+                    <td >{{item.etat}}</td>
+                    <td >{{item.adresse.numVilla +" | "+item.adresse.quartier }}</td>
+                   
+                   </tr>
+              }  
+      
+                </tbody>
+
+            </table>
+            <nav aria-label="Page navigation example ">
+                <ul class="pagination float-end">
+                    <li class="page-item "><a class="page-link" href="#">Previous</a></li>
+                    @for (item of response?.pages; track $index) {
+                      <li class="page-item " [ngClass]="{'active': $index==response?.currentPage}" >
+                          <a (click)="paginate($index)" class="page-link"  >{{ $index+1}}</a>
+                      </li>
+                     }
+                    <li class="page-item"><a class="page-link" href="#">Next</a></li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+    <!-- Content here -->
+</div>
+
