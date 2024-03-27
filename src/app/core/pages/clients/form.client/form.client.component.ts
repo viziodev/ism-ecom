@@ -26,8 +26,6 @@ export class FormClientComponent implements OnInit {
         password:  "",
   }
     ngOnInit(): void {
-   
-    
    }
     onFormSubmit() {
           this.clientService.create(this.clientModel).subscribe(data=>{
