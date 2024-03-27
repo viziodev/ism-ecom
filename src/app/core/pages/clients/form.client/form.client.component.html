@@ -1,1 +1,69 @@
-<p>form.client works!</p>
+<div class="container mt-2" layout:fragment="contentForView">
+    <div class="card mt-1">
+        <div class="card-header">
+            <h3>Enregistrement Clients</h3>
+        </div>
+        <div class="card-body">
+            <form method="post" #clientForm="ngForm"
+               (ngSubmit)="clientForm.form.valid &&  onFormSubmit() ">
+                <div class="form-group">
+                    <label for="nomComplet">Nom et Prenom</label>
+                    <input type="text" class="form-control" id="nomComplet"
+                      aria-describedby="emailHelp" 
+                      name="nomComplet"
+                      [(ngModel)]="clientModel.nomComplet"
+                      required
+                      #nomComplet="ngModel"
+                    >
+                     @if (nomComplet.errors && (nomComplet.dirty || nomComplet.touched)) {
+                        @if (nomComplet.errors['required']) {
+                          <small   class="form-text text-danger"  >Veuillez entrer Nom et le prenom svp... </small>
+                         }
+                      }
+                </div>
+                <div class="form-group">
+                    <label for="telephone">Telephone</label>
+                    <input type="text" class="form-control" id="telephone" aria-describedby="emailHelp"
+                    name="telephone"
+                    [(ngModel)]="clientModel.telephone"
+                    required
+                    pattern="^(77|78|76|70){1}[0-9]{7}"
+                    #telephone="ngModel"
+                     >
+                     @if (telephone.errors && (telephone.dirty || telephone.touched)) {
+                         @if (telephone.errors['required']) {
+                          <small   class="form-text text-danger"  >Veuillez entrer le Telephone svp... </small>
+                         }
+                          @if (telephone.errors['pattern']) {
+                            <small   class="form-text text-danger"  >Le telephone doit contenir 9 chiffres et commencer par  77,.. </small>
+                           }
+                      }
+                </div>
+                <div class="form-group">
+                    <label for="ville">Ville</label>
+                    <input type="text" class="form-control" id="ville" name="ville" aria-describedby="emailHelp"
+                    [(ngModel)]="clientModel.ville"    >
+                </div>
+                <div class="form-group">
+                    <label for="quartier">Quartier</label>
+                    <input type="text" class="form-control" id="quartier" name="quartier" aria-describedby="emailHelp"
+                    [(ngModel)]="clientModel.quartier" >
+
+                </div>
+
+                <div class="form-group">
+                    <label for="numVilla">Numero Villa</label>
+                    <input type="text" class="form-control" id="numVilla" name="numVilla"  aria-describedby="emailHelp"
+                    [(ngModel)]="clientModel.numVilla"
+                    >
+
+                </div>
+                <div class="mt-2">
+                    <button [disabled]="clientForm.form.invalid" type="submit" class="btn btn-primary mt-2 float-end">Enregistrer</button>
+                </div>
+              
+            </form>
+
+        </div>
+    </div>
+</div>

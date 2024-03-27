@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { RestResponse } from '../../models/rest.response';
-import { ClientListe } from '../../models/client.liste';
+import { ClientListe } from '../../models/client';
 import { ClientServiceImpl } from '../../services/impl/client.service.impl';
 import { CommonModule } from '@angular/common';
 import { RouterLink, RouterOutlet } from '@angular/router';
