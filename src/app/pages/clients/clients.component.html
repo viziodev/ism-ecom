@@ -1,11 +1,11 @@
-<div class="container-fluid mt-2" >
-    <div class="card mt-1">
+<div class="container-fluid mt-2 " >
+    <div class="card mt-1 ">
         <div class="card-header">
             <h3>Liste des Clients</h3>
         </div>
         <div class="card-body">
               <div  class="my-2 float-end">
-                       <a th:href="" class="btn btn-outline-success" >Nouveau</a>
+                       <a routerLink="form" class="btn btn-outline-success" >Nouveau</a>
               </div>
 
              <form class="d-flex w-50 mb-3" >
@@ -35,8 +35,8 @@
                     <td >{{item.numVilla}}</td>
                     <td>
                           <a 
-                            routerLink="/commandes/{{item.id}}"     class="btn btn-xs btn-warning  btn-xs"> Mes Commandes </a>
-                          <a   class="mr-2 btn btn-outline-success btn-xs" >Nouvelle Commande</a>
+                                routerLink="/commandes/{{item.id}}"     class="btn btn-xs btn-warning  btn-xs"> Mes Commandes </a>
+                          <a    class="mr-2 btn btn-outline-success btn-xs" >Nouvelle Commande</a>
                     </td>
                    </tr>
               }  
@@ -44,17 +44,7 @@
                 </tbody>
 
             </table>
-            <nav aria-label="Page navigation example ">
-                <ul class="pagination float-end">
-                    <li class="page-item "><a class="page-link" href="#">Previous</a></li>
-                    @for (item of response?.pages; track $index) {
-                      <li class="page-item " [ngClass]="{'active': $index==response?.currentPage}" >
-                          <a (click)="paginate($index)" class="page-link"  >{{ $index+1}}</a>
-                      </li>
-                     }
-                    <li class="page-item"><a class="page-link" href="#">Next</a></li>
-                </ul>
-            </nav>
+            <app-pagination [data]="dataPagination" (onGetNumberPage)="paginateParent($event)"></app-pagination>
         </div>
     </div>
     <!-- Content here -->

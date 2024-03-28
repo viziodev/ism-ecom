@@ -5,7 +5,7 @@ export interface RestResponse<T>{
     totalPages?: number,
     currentPage?: number,
     results:T
-    statut:number
+    statuts:number
 }
 
 

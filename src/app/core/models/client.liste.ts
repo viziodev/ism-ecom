@@ -6,3 +6,12 @@ export interface ClientListe {
        numVilla:  string,
        adresseComplet:  string
 }
+
+export interface ClientCreate {
+       id?: number,
+       nomComplet: string,
+       telephone:  string,
+       quartier:  string,
+       numVilla:  string,
+       ville:  string,
+}

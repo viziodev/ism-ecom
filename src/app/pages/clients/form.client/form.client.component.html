@@ -1,0 +1,67 @@
+<div class="container-fluid mt-2 w-50">
+    <div class="card mt-1">
+        <div class="card-header">
+            <h3>Enregistrement Clients</h3>
+        </div>
+        <div class="card-body">
+            <form #formClient="ngForm" (ngSubmit)="formClient.form.valid && onSubmit()">
+                <div class="form-group">
+                    <label for="nomComplet">Nom et Prenom</label>
+                    <input type="text" class="form-control" id="nomComplet" 
+                     aria-describedby="emailHelp"
+                     [(ngModel)]="clientCreate.nomComplet"
+                     name="nomComplet"
+                     required
+                     minlength="6"
+                     #nomComplet="ngModel"
+                    >
+                    @if (nomComplet.errors && (nomComplet.dirty || nomComplet.touched)) {
+                      @if (nomComplet.errors['required']) {
+                        <small   class="form-text text-danger"  >Nom et Prenom sont obligatoires </small>
+                       }
+                       @if (nomComplet.errors['minlength']) {
+                        <small   class="form-text text-danger"  >Nom et Prenom au moins 6 caracteres </small>
+                       }
+
+                    }
+                  
+                </div>
+                <div class="form-group">
+                    <label for="telephone">Telephone</label>
+                    <input type="text" class="form-control" id="telephone" aria-describedby="emailHelp"
+                     name="telephone"     
+                    [(ngModel)]="clientCreate.telephone"
+                      pattern="^(77|76|78){1}[0-9]{7}"
+                     #telephone="ngModel">
+                     @if (telephone.errors && (telephone.dirty || telephone.touched)) {
+                        @if (telephone.errors['pattern']) {
+                          <small   class="form-text text-danger"  >Le Telephone doit contenir 9 chiffres </small>
+                         } 
+                      }
+                </div>
+                <div class="form-group">
+                    <label for="ville">Ville</label>
+                    <input type="text" class="form-control" id="ville" name="ville" aria-describedby="emailHelp"
+                          >
+                </div>
+                <div class="form-group">
+                    <label for="quartier">Quartier</label>
+                    <input type="text" class="form-control" id="quartier" name="quartier" aria-describedby="emailHelp"
+                          >
+                </div>
+
+                <div class="form-group">
+                    <label for="numVilla">Numero Villa</label>
+                    <input type="text" class="form-control" id="numVilla" name="numVilla"  aria-describedby="emailHelp"
+                          >
+
+                </div>
+                <div class="my-2">
+                    <button [disabled]="formClient.invalid" type="submit" class="btn btn-primary float-end">Enregistrer</button>
+                </div>
+           
+            </form>
+
+        </div>
+    </div>
+</div>
