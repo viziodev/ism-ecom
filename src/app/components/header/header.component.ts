@@ -14,9 +14,9 @@ export class HeaderComponent {
 
   }
   onLoadView() {
-    this.router.navigateByUrl('/',{skipLocationChange:true}).then(()=>{
-           this.router.navigate([`/commandes/all`])
-    })
+    //this.router.navigateByUrl('/',{skipLocationChange:true}).then(()=>{
+        //  this.router.navigate([`/commandes/all`])
+   // })
   }
 
 }

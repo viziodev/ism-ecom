@@ -1,0 +1,113 @@
+<div class="container-fluid mt-2" >
+    <div class="card mt-1">
+        <div class="card-header">
+            <h3>Enregistrement une Commande</h3>
+        </div>
+       
+         <div class="card-body">
+            <form [formGroup]="form" (ngSubmit)="onSubmit()">
+             <div class=" card col-md-10 offset-1">
+                 <div class="card-body">
+                     <div class="row" formGroupName="client">
+                         <div class="col">
+                             <input type="text"
+                                  formControlName="nomComplet"
+                                    readonly class="form-control" placeholder="Nom et Prenom" aria-label="First name">
+                         </div>
+                         <div class="col">
+                             <input
+                                     type="text"
+                                     formControlName="telephone"
+                                   
+                                     readonly class="form-control" placeholder="Telephone" aria-label="First name">
+                         </div>
+                         <div class="col">
+                             <input type="text"
+                                      formControlName="quartier"
+                                    readonly class="form-control" placeholder="Adresse" aria-label="Last name">
+                         </div>
+                     </div>
+                 </div>
+             </div>
+
+             <div class=" card col-md-10 offset-1 my-2">
+                 <div class="card-body w-100">
+                     <div class="d-flex my-2 w-100" >
+                         <div class="row w-100"  formGroupName="article">
+                            <div class="col">
+                                <input type="text"
+                                formControlName="idArticle"
+                                 name="idArticle"
+                                (keyup)=" onSearchArticleByLibelle()"
+                                 class="form-control" placeholder="Article" aria-label="Last name">
+                         
+                             </div>
+                             <div class="col">
+                                <input type="text"
+                                 name="quantiteStock"
+                                 formControlName="quantiteStock"
+                                 readonly
+                                class="form-control" placeholder="QuantiteStock" aria-label="Last name"> 
+                             </div>
+                             <div class="col-md">
+                                <input type="text"
+                                       name="prix"
+                                       formControlName="prix"
+                                       class="form-control" placeholder="Prix Unitaire" aria-label="Last name">
+                            </div>
+                              <div class="col-md">
+                                 <input type="text"
+                                       formControlName="quantite"
+                                     name="quantite"
+                                        class="form-control" placeholder="Quantite" aria-label="Last name">
+                               </div>
+                            
+                             <div class="col">
+                                 <button class="btn btn-outline-success" (click)="addArticleToPanier()">Ajouter</button>
+                             </div>
+
+
+                         </div>
+                        </div>
+
+                 </div>
+             </div>
+             <div class=" card col-md-10 offset-1 my-2">
+                 <div class="card-body w-100">
+                     <table class="table table-bordered mt-1 ">
+                         <thead>
+                         <th>Article</th>
+                         <th>Prix</th>
+                         <th>Quantite</th>
+                         <th>Montant</th>
+                         </thead>
+                         <tbody>
+                           
+                        @for (item of this.articlesPanier.controls; track $index) {
+                            <tr >
+                             <td >{{item.get('libelle')?.value}}</td>
+                             <td >{{item.get('prix')?.value}}</td>
+                             <td >{{item.get('quantite')?.value}}</td>
+                             <td >{{item.get('montant')?.value}}</td>
+                         </tr>
+                    }
+                         </tbody>
+                     </table>
+                     <div class=" row float-start w-25">
+                         <button type="button " class="btn btn-info fs-3">
+                             Total:  <span class="badge text-white font-monospace fs-3" >{{this.total.value}}  </span>
+                         </button>
+                     </div>
+                     <div class="row float-end w-25 mt-5">
+                         <a   type="submit " class="btn btn-info ">
+                                Valider la Commande
+                         </a>
+                     </div>
+                 </div>
+             </div>
+            </form>
+         </div>
+    </div>
+
+ </div>
+
