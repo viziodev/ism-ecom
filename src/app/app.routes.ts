@@ -1,32 +1,26 @@
 import { Routes } from '@angular/router';
-import { ClientsComponent } from './pages/clients/clients.component';
-import { CommandesComponent } from './pages/commandes/commandes.component';
-import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.component';
-import { FormClientComponent } from './pages/clients/form.client/form.client.component';
+import { PageNotFoundComponent } from './public/pages/page-not-found/page-not-found.component';
+import { inject } from '@angular/core';
+import { AuthentificationService } from './core/services/auth/authentification.service';
 
 export const routes: Routes = [
-     {
-      path:"clients",
-        children:[
-          {
-            path:"",
-            component:ClientsComponent,
-          },
-          {
-            path:"form",
-            component:FormClientComponent
-          }
-      ]
+   {
+     path: 'admin',
+       loadChildren: () => import('./secure/secure.module')
+      .then(mod => mod.SecureModule),
+       canMatch: [() => inject(AuthentificationService).isAuthenticated],
      },
-     
      {
-      path:"commandes/:id",
-      component:CommandesComponent
-     },
-     
-     { path: '',   redirectTo: '/clients', pathMatch: 'full' }, 
-    
-     { 
+      path: 'catalogue',
+        loadChildren: () => import('./public/public.module')
+       .then(mod => mod.PublicModule)
+      },
+      {
+        path: '',
+        redirectTo: '/catalogue/catalogue',
+        pathMatch: 'full',
+      },
+      { 
         path: '**', 
         component: PageNotFoundComponent
      },

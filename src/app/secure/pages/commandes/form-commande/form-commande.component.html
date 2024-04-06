@@ -1,0 +1,150 @@
+<div class="container-fluid mt-2" layout:fragment="contentForView">
+    <div class="card mt-1">
+        <div class="card-header">
+            <h3>Enregistrement une Commande</h3>
+        </div>
+         <div class="card-body">
+            <form action="" [formGroup]="form" (ngSubmit)="onSubmit()" >
+                <div class=" card col-md-10 offset-1">
+                    <div class="card-body">
+                        <div class="row" formGroupName="client">
+                            <div class="col">
+                                <input
+                                       formControlName="telephone"
+                                       (keyup)="onSearchClientByTel()"
+                                        type="text"
+                                       class="form-control" placeholder="Telephone" aria-label="First name">
+                                       @if (client.controls['telephone'].errors && (client.controls['telephone'].dirty || client.controls['telephone'].touched)) {
+                                            <small   class="form-text text-danger"  >Le Telephone doit contenir 9 chiffres </small>
+                                       }
+                            </div>
+                            <div class="col">
+                                <input type="text"
+                                     formControlName="nomComplet"
+                                        readonly class="form-control" placeholder="Nom et Prenom" aria-label="First name">
+                            </div>
+                            
+                            <div class="col">
+                                <input type="text"
+                                        formControlName="adresseComplet"
+                                        readonly class="form-control" placeholder="Adresse" aria-label="Last name">
+                                        
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class=" card col-md-10 offset-1 my-2">
+                    <div class="card-body w-100">
+                        <div class="d-flex my-2 w-100" 
+                            
+                            >
+                            <div class="row w-100" formGroupName="article">
+                            
+                                <div class="col">
+                                    <input type="text"
+                                    formControlName="libelle"
+                                    (keyup)="onSearchProduitByLibelle()"
+                                     class="form-control" placeholder="Libelle" aria-label="Libelle Article">
+                         
+                                     @if (article.controls['libelle'].errors && (article.controls['libelle'].dirty || article.controls['libelle'].touched)) {
+                                        <small   class="form-text text-danger"  >Le libelle doit contenir au moins 5 caracteres </small>
+                                   }
+                                   
+                                  </div>
+
+                                <div class="col-md">
+                                    <input type="text"
+                                            name="qte"
+                                            formControlName="quantiteStock"
+                                            readonly
+                                            class="form-control" placeholder="Quantite Stock" aria-label="Last name">
+                                </div>
+                                <div class="col-md">
+                                    <input type="text"
+                                            name="prix"
+                                            formControlName="prix"
+                                            readonly
+                                            class="form-control" placeholder="Prix Unitaire" aria-label="Last name">
+                                </div>
+                                <div class="col-md">
+                                    <input type="text"
+                                        name="qte"
+                                        formControlName="quantite"
+                                        class="form-control" placeholder="Quantite Comde" aria-label="Last name">
+                                        @if (article.controls['quantite'].errors && (article.controls['quantite'].dirty || article.controls['quantite'].touched)) {
+                                            <small   class="form-text text-danger"  >Qte commandee doit etre positive </small>
+                                       }
+                                       @if (article.errors && (article.controls['quantite'].dirty || article.controls['quantite'].touched)) {
+                                         @if (article.errors['isNotNumber']){
+                                            <small   class="form-text text-danger"  >La quantite doit un nombre</small>
+                                          }
+                                          @if (article.errors['qteNotValid']){
+                                            <small   class="form-text text-danger"  >La quantite doit etre inferieur a la qte en stock</small>
+                                          }
+                                        
+                                        }
+                                </div>
+                                <div class="col">
+                                    <button
+                                    [disabled]="article.invalid" 
+                                    (click)="addProduitToPanier()" class="btn btn-outline-success" >Ajouter</button>
+                                </div>
+
+
+                            </div>
+                            </div>
+
+                    </div>
+                </div>
+                <div class=" card col-md-10 offset-1 my-2">
+                    <div class="card-body w-100">
+                          <div
+                            class="table-responsive  my-2"
+                          >
+                            <table
+                                class="table table-light table-bordered"
+                            >
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Article</th>
+                                        <th scope="col">Prix</th>
+                                        <th scope="col">Qte Commande</th>
+                                        <th scope="col">Montant</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @for (item of this.articlesPanier.controls; track $index) {
+                                    <tr class="">
+                                        <td scope="row">{{item.get("libelle")?.value}}</td>
+                                        <td>{{item.get("prix")?.value}}</td>
+                                        <td>{{item.get("quantite")?.value}}</td>
+                                        <td>{{item.get("montant")?.value}}</td>
+                                    </tr>
+                                }
+                                </tbody>
+                            </table>
+                          </div>
+                          
+                        <div class=" row float-start w-25">
+                            <button type="button " class="btn btn-info fs-3">
+                                Total:  <span class="badge text-white font-monospace fs-3"  >{{this.total.value}}  </span>
+                            </button>
+                        </div>
+                        <div class="row float-end w-25 mt-5">
+                            <button [disabled]="client.invalid || articlesPanier.invalid"   type="submit " class="btn btn-info ">
+                                    Valider la Commande
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+
+         </div>
+    </div>
+
+
+
+
+         </div>
+ 

@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { RestResponse } from '../../core/models/rest.response';
-import { ClientListe } from '../../core/models/client.liste';
-import { ClientServiceImpl } from '../../core/services/impl/client.service.impl';
+import { RestResponse } from '../../../core/models/rest.response';
+import { ClientListe } from '../../../core/models/client.liste';
+import { ClientServiceImpl } from '../../../core/services/impl/client.service.impl';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
-import { PaginationComponent } from '../../components/pagination/pagination.component';
-import { PaginationModel } from '../../core/models/pagination.model';
+import { PaginationComponent } from '../../../components/pagination/pagination.component';
+import { PaginationModel } from '../../../core/models/pagination.model';
 
 @Component({
   selector: 'app-clients',
