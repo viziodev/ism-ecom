@@ -16,8 +16,6 @@ export class ArticleServiceImpl implements ArticleService {
   
   
         findByLibelle(libelle: string): Observable<RestResponse<ArticleFormCommande>> {
-          console.log(`${this.apiUrl}/libelle/${libelle}`);
-          
           return  this.http.get<RestResponse<ArticleFormCommande>>(`${this.apiUrl}/libelle/${libelle}`) 
         }
 

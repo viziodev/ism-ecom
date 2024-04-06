@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormArray, FormBuilder, FormControl, FormGroup, ReactiveFormsModule, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
-import { ClientServiceImpl } from '../../../../core/services/impl/client.service.impl';
-import { ArticleServiceImpl } from '../../../../core/services/impl/article.service.impl';
+import { ClientServiceImpl } from '../../../core/services/impl/client.service.impl';
+import { ArticleServiceImpl } from '../../../core/services/impl/article.service.impl';
 import { CommonModule } from '@angular/common';
+import { CommandeServiceImpl } from '../../../core/services/impl/commande.service.impl';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-form-commande',
@@ -37,7 +39,10 @@ export class FormCommandeComponent implements OnInit {
   })
   constructor(private fb: FormBuilder,
     private clientservice:ClientServiceImpl,
-    private articleService:ArticleServiceImpl){
+    private articleService:ArticleServiceImpl,
+    private commandeService:CommandeServiceImpl,
+    private router:Router
+    ){
     
   }
   get total(){
@@ -111,7 +116,14 @@ export class FormCommandeComponent implements OnInit {
            }
         
     onSubmit() {
-        
+      const {article,...panier} =this.form.value
+      this.commandeService.create(panier).subscribe(data=>{
+        if (data.statuts==204) {
+            this.form.reset();
+            this.router.navigateByUrl("/commandes/all")
+        }
+      });
+       
     }
     validateQteCmde():ValidatorFn{
         return (article:AbstractControl):ValidationErrors|null=>{

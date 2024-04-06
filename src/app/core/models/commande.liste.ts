@@ -1,3 +1,6 @@
+import { ArticleFormCommande } from "./article.models";
+import { ClientFormCommande } from "./client.liste";
+
  export default interface CommandeListe {
     id: number
    dateComd: string,
@@ -15,3 +18,14 @@ export interface Adresse {
     ville: string,
      numVilla: string
 }
+export  interface CommandeCreate{
+    articlesPanier?: unknown[] | undefined;
+    total?: number | null | undefined;
+    client?: Partial<{
+        id: any;
+        nomComplet: null;
+        telephone: string | null;
+        adresseComplet: null;
+    }> | undefined;
+}
+

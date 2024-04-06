@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import { ClientCreate } from '../../../../core/models/client.liste';
+import { ClientCreate } from '../../../core/models/client.liste';
 import { FormsModule } from '@angular/forms';
-import { ClientServiceImpl } from '../../../../core/services/impl/client.service.impl';
+import { ClientServiceImpl } from '../../../core/services/impl/client.service.impl';
 import { Router } from '@angular/router';
 
 
