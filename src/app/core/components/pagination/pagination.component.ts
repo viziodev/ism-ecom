@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { PaginationModel } from '../../core/models/pagination.model';
+import { PaginationModel } from '../../models/pagination.model';
 import { CommonModule } from '@angular/common';
 
 @Component({

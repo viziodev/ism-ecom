@@ -8,7 +8,6 @@ export interface ArticleService {
     findByLibelle(libelle:string):Observable<RestResponse<ArticleFormCommande>>;
     findAll():Observable<RestResponse<ArticleCatalogue[]>>;
     findById(id:number):Observable<RestResponse<ArticleCatalogue>>;
-    ///articles/libelle/{libelle}
 
 
 }

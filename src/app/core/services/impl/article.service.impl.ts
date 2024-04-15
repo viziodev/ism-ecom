@@ -9,7 +9,7 @@ import { HttpClient } from '@angular/common/http';
 @Injectable({
   providedIn: 'root'
 })
-export class ArticleServiceImpl implements ArticleService {
+export class ArticleServiceImpl  implements ArticleService {
 
    private apiUrl=`${environment.APIURL}/articles`
          constructor(private http:HttpClient) {  }

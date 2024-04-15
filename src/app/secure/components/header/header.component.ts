@@ -4,7 +4,7 @@ import { Router} from '@angular/router';
 
 @Component({
   selector: 'app-header',
-  standalone: true,
+  standalone: false,
   templateUrl: './header.component.html',
   styleUrl: './header.component.css'
 })
@@ -14,7 +14,7 @@ export class HeaderComponent {
   }
   onLoadView() {
     this.router.navigateByUrl('/',{skipLocationChange:true}).then(()=>{
-           this.router.navigate([`/commandes/all`])
+           this.router.navigate([`/admin/commandes/all`])
     })
   }
 

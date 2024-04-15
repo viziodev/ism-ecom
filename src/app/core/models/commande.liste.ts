@@ -1,5 +1,4 @@
-import { ArticleFormCommande } from "./article.models";
-import { ClientFormCommande } from "./client.liste";
+
 
  export default interface CommandeListe {
     id: number
