@@ -2,11 +2,16 @@ import { Routes } from '@angular/router';
 import { PageNotFoundComponent } from './secure/pages/page-not-found/page-not-found.component';
 import { inject } from '@angular/core';
 import { AuthentificateService } from './core/services/auth/authentificate.service';
+import { LoginComponent } from './public/pages/login/login.component';
 
 
 
 export const routes: Routes = [
-      {
+    {
+    path:"login",
+     component: LoginComponent
+    },  
+    {
         path:"admin",
         loadChildren:()=>import("./secure/secure.module").then(mod=>mod.SecureModule),
         canMatch:[()=>inject(AuthentificateService).isAuthentificated]
