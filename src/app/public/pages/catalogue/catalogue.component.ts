@@ -15,7 +15,8 @@ export class CatalogueComponent implements OnInit {
   response!:RestResponse<ArticleCatalogue[]>
   ngOnInit(): void {
     this.articleService.findAll().subscribe(data=>{
-      if(data.statuts==200)  this.response=data
+      if(data.statuts==200) 
+         this.response=data
     })
   }
 

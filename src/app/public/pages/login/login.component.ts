@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { RestResponse } from '../../../core/models/rest.response';
 import { TokenResponse } from '../../../core/models/login.model';
 
+
 @Component({
   selector: 'app-login',
   standalone: true,
@@ -30,8 +31,15 @@ export class LoginComponent {
   onSubmit() {
     let data = this.form.getRawValue();
     this.authService.login(data).subscribe((res: RestResponse<TokenResponse>) => {
-      localStorage.setItem('token', res.results.token);
-        this.router.navigateByUrl('/dashboard');
+      if (res.statuts==200) {
+        this.authService.isAuthentificated=true;
+        this.router.navigateByUrl('/client/catalogue');
+      } else {
+         console.log("Error");
+      }
+    
+     
+       // 
     });
   }
 }

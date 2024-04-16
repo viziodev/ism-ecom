@@ -1,5 +1,6 @@
 export interface TokenResponse {
     token:string
+    roles:String[]
 }
 
 export interface AuthentificationRequest {
