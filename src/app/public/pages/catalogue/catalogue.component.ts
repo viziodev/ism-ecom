@@ -12,10 +12,13 @@ import { ArticleCatalogue } from '../../../core/models/article.models';
 })
 export class CatalogueComponent implements OnInit {
   private articleService:ArticleServiceImpl=inject(ArticleServiceImpl)
-  response!:RestResponse<ArticleCatalogue[]>
+  response?:RestResponse<ArticleCatalogue[]>
   ngOnInit(): void {
     this.articleService.findAll().subscribe(data=>{
-      if(data.statuts==200)  this.response=data
+      if(data.statuts==200) {
+        this.response=data
+      }
+        
     })
   }
 

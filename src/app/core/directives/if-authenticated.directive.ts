@@ -4,7 +4,7 @@ import { AuthentificateService } from '../services/auth/authentificate.service';
 
 @Directive({
   selector: '[IfAuthenticated]',
-  standalone: true,
+  standalone: false,
   hostDirectives:[{
     directive:NgIf
   }]
@@ -15,6 +15,8 @@ export class IfAuthenticatedDirective implements OnInit {
    private ngIfDirective=inject(NgIf)
 
    ngOnInit(): void {
+    console.log(this.authServ.isAuthentificated);
+    
       this.ngIfDirective.ngIf=this.authServ.isAuthentificated
   }
 
